@@ -6,6 +6,10 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
+  /* Disable mobile font boosting - otherwise phones inflate text in the wide
+     Async/TBA row cells while leaving the rest of the grid at normal size */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
   body { font-family: 'Roboto Condensed', sans-serif; background: #f8f8f6; padding: 24px; margin: 0; }
   h1 { font-size: 16px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #1a1a1a; margin: 0 0 4px 0; }
   .subtitle { font-size: 11px; color: #888; margin: 0 0 14px 0; letter-spacing: 0.04em; }
