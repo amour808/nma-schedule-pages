@@ -28,18 +28,18 @@
   /* Outline borders for Tuesday/Thursday column groups */
   .col-tue-first, .col-tue-last, .col-tuesday { background: #EFEFED; }
   .col-thu-first, .col-thu-last, .col-thursday { background: #EFEFED; }
-  .col-tue-first { border-left: 1.5px solid #999 !important; }
-  .col-tue-last  { border-right: 1.5px solid #999 !important; }
-  .col-thu-first { border-left: 1.5px solid #999 !important; }
-  .col-thu-last  { border-right: 1.5px solid #999 !important; }
-  .header-day.col-tuesday  { border-left: 1.5px solid #999 !important; border-right: 1.5px solid #999 !important; border-top: 1.5px solid #999 !important; color: #1a1a1a; }
-  .header-day.col-thursday { border-left: 1.5px solid #999 !important; border-right: 1.5px solid #999 !important; border-top: 1.5px solid #999 !important; color: #1a1a1a; }
-  .header-room.col-tuesday:first-of-type  { border-left: 1.5px solid #999 !important; }
-  .header-room.col-tuesday:last-of-type   { border-right: 1.5px solid #999 !important; }
-  .header-room.col-thursday:first-of-type { border-left: 1.5px solid #999 !important; }
-  .header-room.col-thursday:last-of-type  { border-right: 1.5px solid #999 !important; }
+  .col-tue-first { border-left: 2px solid #999 !important; }
+  .col-tue-last  { border-right: 2px solid #999 !important; }
+  .col-thu-first { border-left: 2px solid #999 !important; }
+  .col-thu-last  { border-right: 2px solid #999 !important; }
+  .header-day.col-tuesday  { border-left: 2px solid #999 !important; border-right: 2px solid #999 !important; border-top: 2px solid #999 !important; color: #1a1a1a; }
+  .header-day.col-thursday { border-left: 2px solid #999 !important; border-right: 2px solid #999 !important; border-top: 2px solid #999 !important; color: #1a1a1a; }
+  .header-room.col-tuesday:first-of-type  { border-left: 2px solid #999 !important; }
+  .header-room.col-tuesday:last-of-type   { border-right: 2px solid #999 !important; }
+  .header-room.col-thursday:first-of-type { border-left: 2px solid #999 !important; }
+  .header-room.col-thursday:last-of-type  { border-right: 2px solid #999 !important; }
   .col-friday   { background: #4a4a4a; }
-  .col-timeslot { background: #2d2d2d; }
+  .col-timeslot { background: #f8f8f6; }
 
   .timeslot { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; color: #555; text-align: right; padding: 8px 10px; white-space: nowrap; vertical-align: middle; background: #f4f4f2; border-bottom: 1px solid #e8e8e4; border-right: 2px solid #ddd; width: 80px; }
 
@@ -77,6 +77,24 @@
 
   .async-row .timeslot { font-style: italic; color: #999; }
   tr:last-child td { border-bottom: none; }
+
+  /* Scanning aids (interaction only - no change to the design at rest):
+     hovering a class highlights its twin card on the other meeting day;
+     clicking a legend item spotlights that cohort and dims the rest. */
+  .class-card, .openlab-card { transition: opacity 0.15s, box-shadow 0.15s; }
+  .crn-glow { box-shadow: 0 0 0 2px rgba(40, 40, 40, 0.45); }
+  .card-dim { opacity: 0.14; }
+  .legend-item { cursor: pointer; padding: 2px 7px; border-radius: 10px; border: 1px solid transparent; transition: background 0.15s, border-color 0.15s; }
+  .legend-item:hover { background: #fff; }
+  .legend-item.active { background: #fff; border-color: #bbb; }
+  .legend-hint { font-size: 9px; color: #aaa; align-self: center; letter-spacing: 0.03em; }
+
+  /* Instructor index, top right: click a name to spotlight that instructor's classes */
+  .header-bar { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+  .instructor-index { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 3px 5px; max-width: 42%; text-align: right; padding-top: 2px; }
+  .instr-item { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #444; cursor: pointer; padding: 2px 7px; border-radius: 10px; border: 1px solid transparent; transition: background 0.15s, border-color 0.15s; }
+  .instr-item:hover { background: #fff; }
+  .instr-item.active { background: #fff; border-color: #bbb; }
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6YZRGXY2WN"></script>
@@ -90,16 +108,22 @@
 </head>
 <body>
 
-<h1>New Media Arts — Class Schedule</h1>
-<p class="subtitle">Fall 2026 &nbsp;·&nbsp; Monday – Friday &nbsp;·&nbsp; Color-coded by Specialization &amp; Cohort &nbsp;·&nbsp; Data refreshed 2026-08-20 17:00</p>
+<div class="header-bar">
+  <div>
+    <h1>New Media Arts — Class Schedule</h1>
+    <p class="subtitle">Fall 2026 &nbsp;·&nbsp; Monday – Friday &nbsp;·&nbsp; Color-coded by Specialization &amp; Cohort &nbsp;·&nbsp; Data refreshed 2026-08-20 17:00</p>
+  </div>
+  <div class="instructor-index"><span class="instr-item" data-instructor="AHTY">AHTY</span><span class="instr-item" data-instructor="AMOUR808">AMOUR808</span><span class="instr-item" data-instructor="EGAMOODY">EGAMOODY</span><span class="instr-item" data-instructor="GARGIULO">GARGIULO</span><span class="instr-item" data-instructor="JAELS">JAELS</span><span class="instr-item" data-instructor="JAKES">JAKES</span><span class="instr-item" data-instructor="KCIUREJ">KCIUREJ</span><span class="instr-item" data-instructor="MARCIEMO">MARCIEMO</span><span class="instr-item" data-instructor="TYLERENG">TYLERENG</span></div>
+</div>
 
-<div class="legend">
-  <div class="legend-item"><div class="legend-dot" style="background:#D4F0EC;border:1px solid #5DB1A3"></div> Interface Design — 1st Year</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#7BC1B5"></div> Interface Design — 2nd Year</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#FDE8EC;border:1px solid #D893A1"></div> Animation — 1st Year</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#D893A1"></div> Animation — 2nd Year</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#DBEAFE;border:1px solid #0EA5E9"></div> Open Lab</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#FFFFFF;border:1px solid #D1D5DB"></div> Prerequisite / Non-NMA</div>
+<div class="legend" id="legend">
+  <div class="legend-item" data-filter="iface1"><div class="legend-dot" style="background:#D4F0EC;border:1px solid #5DB1A3"></div> Interface Design — 1st Year</div>
+  <div class="legend-item" data-filter="iface2"><div class="legend-dot" style="background:#7BC1B5"></div> Interface Design — 2nd Year</div>
+  <div class="legend-item" data-filter="anim1"><div class="legend-dot" style="background:#FDE8EC;border:1px solid #D893A1"></div> Animation — 1st Year</div>
+  <div class="legend-item" data-filter="anim2"><div class="legend-dot" style="background:#D893A1"></div> Animation — 2nd Year</div>
+  <div class="legend-item" data-filter="openlab"><div class="legend-dot" style="background:#DBEAFE;border:1px solid #0EA5E9"></div> Open Lab</div>
+  <div class="legend-item" data-filter="nofill"><div class="legend-dot" style="background:#FFFFFF;border:1px solid #D1D5DB"></div> Prerequisite / Non-NMA</div>
+  <div class="legend-hint">click a category to spotlight it &nbsp;·&nbsp; hover a class to find its other day</div>
 </div>
 
 <table>
@@ -163,20 +187,20 @@
     <td class="timeslot">8:00 – 10:30</td>
     <td class="cell"></td><!-- M/ASYNC1 -->
     <td class="cell"></td><!-- M/ASYNC2 -->
-    <td class="cell"><div class="class-card iface2" data-crn="31898"><div class="class-number">ART 298WS</div><div class="class-name">Work Study</div><div class="class-mode">KOPIKO 202A / ZOOM IN ROOM</div><div class="class-instructor">GARGIULO</div></div></td><!-- M/KOP202A -->
+    <td class="cell"><div class="class-card iface2" data-crn="31898" data-instructor="GARGIULO"><div class="class-number">ART 298WS</div><div class="class-name">Work Study</div><div class="class-mode">KOPIKO 202A / ZOOM IN ROOM</div><div class="class-instructor">GARGIULO</div></div></td><!-- M/KOP202A -->
     <td class="cell"></td><!-- M/KOA102 -->
-    <td class="cell"><div class="class-card nofill" data-crn="31866"><div class="class-number">ART 112</div><div class="class-name">Intro to Digital Arts</div><div class="class-mode">KOA 103</div><div class="class-instructor">TYLERENG</div></div></td><!-- M/KOA103 -->
-    <td class="cell col-tue-first"><div class="class-card anim2" data-crn="31030"><div class="class-number">ART 246</div><div class="class-name">3D Computer Graphics III</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">TYLERENG</div></div></td><!-- T/ASYNC -->
-    <td class="cell col-tuesday"><div class="class-card iface1" data-crn="83049"><div class="class-number">ART 159</div><div class="class-name">Hist. of Communication</div><div class="class-mode">KOPIKO 202A</div><div class="class-instructor">JAELS</div></div></td><!-- T/KOP202A -->
+    <td class="cell"><div class="class-card nofill" data-crn="31866" data-instructor="TYLERENG"><div class="class-number">ART 112</div><div class="class-name">Intro to Digital Arts</div><div class="class-mode">KOA 103</div><div class="class-instructor">TYLERENG</div></div></td><!-- M/KOA103 -->
+    <td class="cell col-tue-first"><div class="class-card anim2" data-crn="31030" data-instructor="TYLERENG"><div class="class-number">ART 246</div><div class="class-name">3D Computer Graphics III</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">TYLERENG</div></div></td><!-- T/ASYNC -->
+    <td class="cell col-tuesday"><div class="class-card iface1" data-crn="83049" data-instructor="JAELS"><div class="class-number">ART 159</div><div class="class-name">Hist. of Communication</div><div class="class-mode">KOPIKO 202A</div><div class="class-instructor">JAELS</div></div></td><!-- T/KOP202A -->
     <td class="cell col-tuesday"></td><!-- T/KOA103 -->
     <td class="cell col-tue-last"></td><!-- T/KOA204 -->
     <td class="cell"></td><!-- W/SYNC -->
     <td class="cell"></td><!-- W/ASYNC -->
-    <td class="cell"><div class="class-card iface2" data-crn="31898"><div class="class-number">ART 298WS</div><div class="class-name">Work Study</div><div class="class-mode">KOPIKO 202A / ZOOM IN ROOM</div><div class="class-instructor">GARGIULO</div></div></td><!-- W/KOP202A -->
+    <td class="cell"><div class="class-card iface2" data-crn="31898" data-instructor="GARGIULO"><div class="class-number">ART 298WS</div><div class="class-name">Work Study</div><div class="class-mode">KOPIKO 202A / ZOOM IN ROOM</div><div class="class-instructor">GARGIULO</div></div></td><!-- W/KOP202A -->
     <td class="cell"></td><!-- W/KOA102 -->
-    <td class="cell"><div class="class-card nofill" data-crn="31866"><div class="class-number">ART 112</div><div class="class-name">Intro to Digital Arts</div><div class="class-mode">KOA 103</div><div class="class-instructor">TYLERENG</div></div></td><!-- W/KOA103 -->
-    <td class="cell col-thu-first"><div class="class-card iface1" data-crn="83049"><div class="class-number">ART 159</div><div class="class-name">Hist. of Communication</div><div class="class-mode">KOPIKO 202A</div><div class="class-instructor">JAELS</div></div></td><!-- R/KOP202A -->
-    <td class="cell col-thursday"><div class="class-card anim2" data-crn="31030"><div class="class-number">ART 246</div><div class="class-name">3D Computer Graphics III</div><div class="class-mode">KOA 102</div><div class="class-instructor">TYLERENG</div></div></td><!-- R/KOA102 -->
+    <td class="cell"><div class="class-card nofill" data-crn="31866" data-instructor="TYLERENG"><div class="class-number">ART 112</div><div class="class-name">Intro to Digital Arts</div><div class="class-mode">KOA 103</div><div class="class-instructor">TYLERENG</div></div></td><!-- W/KOA103 -->
+    <td class="cell col-thu-first"><div class="class-card iface1" data-crn="83049" data-instructor="JAELS"><div class="class-number">ART 159</div><div class="class-name">Hist. of Communication</div><div class="class-mode">KOPIKO 202A</div><div class="class-instructor">JAELS</div></div></td><!-- R/KOP202A -->
+    <td class="cell col-thursday"><div class="class-card anim2" data-crn="31030" data-instructor="TYLERENG"><div class="class-number">ART 246</div><div class="class-name">3D Computer Graphics III</div><div class="class-mode">KOA 102</div><div class="class-instructor">TYLERENG</div></div></td><!-- R/KOA102 -->
     <td class="cell col-thursday"></td><!-- R/KOA103 -->
     <td class="cell col-thu-last"></td><!-- R/KOA204 -->
     <td class="cell empty"></td><!-- Fri -->
@@ -185,47 +209,47 @@
   <!-- 10:45 – 1:15 -->
   <tr>
     <td class="timeslot">10:45 – 1:15</td>
-    <td class="cell"><div class="class-card iface1" data-crn="31033"><div class="class-number">ART 257</div><div class="class-name">Motion Graphic Design</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">AMOUR808</div></div></td><!-- M/ASYNC1 -->
-    <td class="cell"><div class="class-card anim1" data-crn="31029"><div class="class-number">ART 202</div><div class="class-name">Digital Imaging</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">AHTY</div></div></td><!-- M/ASYNC2 -->
+    <td class="cell"><div class="class-card iface1" data-crn="31033" data-instructor="AMOUR808"><div class="class-number">ART 257</div><div class="class-name">Motion Graphic Design</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">AMOUR808</div></div></td><!-- M/ASYNC1 -->
+    <td class="cell"><div class="class-card anim1" data-crn="31029" data-instructor="AHTY"><div class="class-number">ART 202</div><div class="class-name">Digital Imaging</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">AHTY</div></div></td><!-- M/ASYNC2 -->
     <td class="cell"></td><!-- M/KOP202A -->
-    <td class="cell"><div class="class-card anim2" data-crn="32006"><div class="class-number">ART 298P</div><div class="class-name">Procedural Effects</div><div class="class-mode">KOA 102</div><div class="class-instructor">TYLERENG</div></div></td><!-- M/KOA102 -->
+    <td class="cell"><div class="class-card anim2" data-crn="32006" data-instructor="TYLERENG"><div class="class-number">ART 298P</div><div class="class-name">Procedural Effects</div><div class="class-mode">KOA 102</div><div class="class-instructor">TYLERENG</div></div></td><!-- M/KOA102 -->
     <td class="cell"></td><!-- M/KOA103 -->
-    <td class="cell col-tue-first"><div class="class-card anim2" data-crn="31034"><div class="class-number">ART 257 — Sec 2</div><div class="class-name">Motion Graphic Design</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">AMOUR808</div></div></td><!-- T/ASYNC -->
-    <td class="cell col-tuesday"><div class="class-card iface1" data-crn="83048"><div class="class-number">ART 120</div><div class="class-name">Intro to Typography</div><div class="class-mode">KOPIKO 202A</div><div class="class-instructor">EGAMOODY</div></div></td><!-- T/KOP202A -->
-    <td class="cell col-tuesday"><div class="class-card iface2" data-crn="31035"><div class="class-number">ART 258</div><div class="class-name">Interface Programming II</div><div class="class-mode">KOA 103 / ZOOM IN ROOM</div><div class="class-instructor">GARGIULO</div></div></td><!-- T/KOA103 -->
-    <td class="cell col-tue-last"><div class="class-card anim1" data-crn="31068"><div class="class-number">ART 214</div><div class="class-name">Life Drawing</div><div class="class-mode">KOA 204 (ends 1:30)</div><div class="class-instructor">KLOE</div></div></td><!-- T/KOA204 -->
-    <td class="cell"><div class="class-card iface1" data-crn="31033"><div class="class-number">ART 257</div><div class="class-name">Motion Graphic Design</div><div class="class-mode">SYNC ONLINE</div><div class="class-instructor">AMOUR808</div></div></td><!-- W/SYNC -->
-    <td class="cell"><div class="class-card anim2" data-crn="32006"><div class="class-number">ART 298P</div><div class="class-name">Procedural Effects</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">TYLERENG</div></div></td><!-- W/ASYNC -->
+    <td class="cell col-tue-first"><div class="class-card anim2" data-crn="31034" data-instructor="AMOUR808"><div class="class-number">ART 257 — Sec 2</div><div class="class-name">Motion Graphic Design</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">AMOUR808</div></div></td><!-- T/ASYNC -->
+    <td class="cell col-tuesday"><div class="class-card iface1" data-crn="83048" data-instructor="EGAMOODY"><div class="class-number">ART 120</div><div class="class-name">Intro to Typography</div><div class="class-mode">KOPIKO 202A</div><div class="class-instructor">EGAMOODY</div></div></td><!-- T/KOP202A -->
+    <td class="cell col-tuesday"><div class="class-card iface2" data-crn="31035" data-instructor="GARGIULO"><div class="class-number">ART 258</div><div class="class-name">Interface Programming II</div><div class="class-mode">KOA 103 / ZOOM IN ROOM</div><div class="class-instructor">GARGIULO</div></div></td><!-- T/KOA103 -->
+    <td class="cell col-tue-last"><div class="class-card anim1" data-crn="31068" data-instructor="KLOE"><div class="class-number">ART 214</div><div class="class-name">Life Drawing</div><div class="class-mode">KOA 204 (ends 1:30)</div><div class="class-instructor">KLOE</div></div></td><!-- T/KOA204 -->
+    <td class="cell"><div class="class-card iface1" data-crn="31033" data-instructor="AMOUR808"><div class="class-number">ART 257</div><div class="class-name">Motion Graphic Design</div><div class="class-mode">SYNC ONLINE</div><div class="class-instructor">AMOUR808</div></div></td><!-- W/SYNC -->
+    <td class="cell"><div class="class-card anim2" data-crn="32006" data-instructor="TYLERENG"><div class="class-number">ART 298P</div><div class="class-name">Procedural Effects</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">TYLERENG</div></div></td><!-- W/ASYNC -->
     <td class="cell"></td><!-- W/KOP202A -->
-    <td class="cell"><div class="class-card anim1" data-crn="31029"><div class="class-number">ART 202</div><div class="class-name">Digital Imaging</div><div class="class-mode">KOA 102</div><div class="class-instructor">AHTY</div></div></td><!-- W/KOA102 -->
+    <td class="cell"><div class="class-card anim1" data-crn="31029" data-instructor="AHTY"><div class="class-number">ART 202</div><div class="class-name">Digital Imaging</div><div class="class-mode">KOA 102</div><div class="class-instructor">AHTY</div></div></td><!-- W/KOA102 -->
     <td class="cell"></td><!-- W/KOA103 -->
-    <td class="cell col-thu-first"><div class="class-card iface1" data-crn="83048"><div class="class-number">ART 120</div><div class="class-name">Intro to Typography</div><div class="class-mode">KOPIKO 202A</div><div class="class-instructor">EGAMOODY</div></div></td><!-- R/KOP202A -->
-    <td class="cell col-thursday"><div class="class-card anim2" data-crn="31034"><div class="class-number">ART 257 — Sec 2</div><div class="class-name">Motion Graphic Design</div><div class="class-mode">KOA 102</div><div class="class-instructor">AMOUR808</div></div></td><!-- R/KOA102 -->
-    <td class="cell col-thursday"><div class="class-card iface2" data-crn="31035"><div class="class-number">ART 258</div><div class="class-name">Interface Programming II</div><div class="class-mode">KOA 103 / ZOOM IN ROOM</div><div class="class-instructor">GARGIULO</div></div></td><!-- R/KOA103 -->
-    <td class="cell col-thu-last"><div class="class-card anim1" data-crn="31068"><div class="class-number">ART 214</div><div class="class-name">Life Drawing</div><div class="class-mode">KOA 204 (ends 1:30)</div><div class="class-instructor">KLOE</div></div></td><!-- R/KOA204 -->
+    <td class="cell col-thu-first"><div class="class-card iface1" data-crn="83048" data-instructor="EGAMOODY"><div class="class-number">ART 120</div><div class="class-name">Intro to Typography</div><div class="class-mode">KOPIKO 202A</div><div class="class-instructor">EGAMOODY</div></div></td><!-- R/KOP202A -->
+    <td class="cell col-thursday"><div class="class-card anim2" data-crn="31034" data-instructor="AMOUR808"><div class="class-number">ART 257 — Sec 2</div><div class="class-name">Motion Graphic Design</div><div class="class-mode">KOA 102</div><div class="class-instructor">AMOUR808</div></div></td><!-- R/KOA102 -->
+    <td class="cell col-thursday"><div class="class-card iface2" data-crn="31035" data-instructor="GARGIULO"><div class="class-number">ART 258</div><div class="class-name">Interface Programming II</div><div class="class-mode">KOA 103 / ZOOM IN ROOM</div><div class="class-instructor">GARGIULO</div></div></td><!-- R/KOA103 -->
+    <td class="cell col-thu-last"><div class="class-card anim1" data-crn="31068" data-instructor="KLOE"><div class="class-number">ART 214</div><div class="class-name">Life Drawing</div><div class="class-mode">KOA 204 (ends 1:30)</div><div class="class-instructor">KLOE</div></div></td><!-- R/KOA204 -->
     <td class="cell openlab" rowspan="3"><div class="openlab-card" data-day="Friday"><div class="openlab-label">KOA 102/103</div><div class="openlab-name">Open Lab</div><div class="openlab-time">10:00 AM – 6:00 PM</div></div></td><!-- Fri rowspan 3 -->
   </tr>
 
   <!-- 1:45 – 4:15 -->
   <tr>
     <td class="timeslot">1:45 – 4:15</td>
-    <td class="cell"><div class="class-card anim1" data-crn="31026"><div class="class-number">ART 126</div><div class="class-name">3D Computer Graphics I</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">JAKES</div></div></td><!-- M/ASYNC1 -->
+    <td class="cell"><div class="class-card anim1" data-crn="31026" data-instructor="JAKES"><div class="class-number">ART 126</div><div class="class-name">3D Computer Graphics I</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">JAKES</div></div></td><!-- M/ASYNC1 -->
     <td class="cell"></td><!-- M/ASYNC2 -->
     <td class="cell"></td><!-- M/KOP202A -->
     <td class="cell"></td><!-- M/KOA102 -->
     <td class="cell openlab" rowspan="2"><div class="openlab-card" data-day="Monday"><div class="openlab-label">KOA 102/103</div><div class="openlab-name">Open Lab</div><div class="openlab-time">2:00 PM – 6:00 PM</div></div></td><!-- M/KOA103 rowspan 2 -->
-    <td class="cell col-tue-first"><div class="class-card iface2" data-crn="31031"><div class="class-number">ART 249</div><div class="class-name">Interface Design II</div><div class="class-mode">SYNC ONLINE</div><div class="class-instructor">GARGIULO</div></div><div class="class-card anim2" data-crn="31036"><div class="class-number">ART 294</div><div class="class-name">Animation Practicum</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">JAKES</div></div></td><!-- T/ASYNC -->
-    <td class="cell col-tuesday"><div class="class-card iface1" data-crn="31780"><div class="class-number">ART 125</div><div class="class-name">Intro to Graphic Design</div><div class="class-mode">KOPIKO 202A</div><div class="class-instructor">EGAMOODY</div></div></td><!-- T/KOP202A -->
-    <td class="cell col-tuesday"><div class="class-card nofill" data-crn="31581"><div class="class-number">ART 107D</div><div class="class-name">Intro to Digital Photo</div><div class="class-mode">KOA 103</div><div class="class-instructor">ATIS</div></div></td><!-- T/KOA103 -->
+    <td class="cell col-tue-first"><div class="class-card iface2" data-crn="31031" data-instructor="GARGIULO"><div class="class-number">ART 249</div><div class="class-name">Interface Design II</div><div class="class-mode">SYNC ONLINE</div><div class="class-instructor">GARGIULO</div></div><div class="class-card anim2" data-crn="31036" data-instructor="JAKES"><div class="class-number">ART 294</div><div class="class-name">Animation Practicum</div><div class="class-mode">ASYNC ONLINE</div><div class="class-instructor">JAKES</div></div></td><!-- T/ASYNC -->
+    <td class="cell col-tuesday"><div class="class-card iface1" data-crn="31780" data-instructor="EGAMOODY"><div class="class-number">ART 125</div><div class="class-name">Intro to Graphic Design</div><div class="class-mode">KOPIKO 202A</div><div class="class-instructor">EGAMOODY</div></div></td><!-- T/KOP202A -->
+    <td class="cell col-tuesday"><div class="class-card nofill" data-crn="31581" data-instructor="ATIS"><div class="class-number">ART 107D</div><div class="class-name">Intro to Digital Photo</div><div class="class-mode">KOA 103</div><div class="class-instructor">ATIS</div></div></td><!-- T/KOA103 -->
     <td class="cell col-tue-last"></td><!-- T/KOA204 -->
     <td class="cell"></td><!-- W/SYNC -->
     <td class="cell"></td><!-- W/ASYNC -->
     <td class="cell"></td><!-- W/KOP202A -->
-    <td class="cell"><div class="class-card anim1" data-crn="31026"><div class="class-number">ART 126</div><div class="class-name">3D Computer Graphics I</div><div class="class-mode">KOA 102</div><div class="class-instructor">JAKES</div></div></td><!-- W/KOA102 -->
+    <td class="cell"><div class="class-card anim1" data-crn="31026" data-instructor="JAKES"><div class="class-number">ART 126</div><div class="class-name">3D Computer Graphics I</div><div class="class-mode">KOA 102</div><div class="class-instructor">JAKES</div></div></td><!-- W/KOA102 -->
     <td class="cell openlab" rowspan="2"><div class="openlab-card" data-day="Wednesday"><div class="openlab-label">KOA 102/103</div><div class="openlab-name">Open Lab</div><div class="openlab-time">2:00 PM – 6:00 PM</div></div></td><!-- W/KOA103 rowspan 2 -->
-    <td class="cell col-thu-first"><div class="class-card iface2" data-crn="31031"><div class="class-number">ART 249</div><div class="class-name">Interface Design II</div><div class="class-mode">KOPIKO 202B</div><div class="class-instructor">GARGIULO</div></div><div class="class-card iface1" data-crn="31780"><div class="class-number">ART 125</div><div class="class-name">Intro to Graphic Design</div><div class="class-mode">KOPIKO 202A</div><div class="class-instructor">EGAMOODY</div></div></td><!-- R/KOP202A -->
-    <td class="cell col-thursday"><div class="class-card anim2" data-crn="31036"><div class="class-number">ART 294</div><div class="class-name">Animation Practicum</div><div class="class-mode">KOA 102</div><div class="class-instructor">JAKES</div></div></td><!-- R/KOA102 -->
-    <td class="cell col-thursday"><div class="class-card nofill" data-crn="31581"><div class="class-number">ART 107D</div><div class="class-name">Intro to Digital Photo</div><div class="class-mode">KOA 103</div><div class="class-instructor">ATIS</div></div></td><!-- R/KOA103 -->
+    <td class="cell col-thu-first"><div class="class-card iface2" data-crn="31031" data-instructor="GARGIULO"><div class="class-number">ART 249</div><div class="class-name">Interface Design II</div><div class="class-mode">KOPIKO 202B</div><div class="class-instructor">GARGIULO</div></div><div class="class-card iface1" data-crn="31780" data-instructor="EGAMOODY"><div class="class-number">ART 125</div><div class="class-name">Intro to Graphic Design</div><div class="class-mode">KOPIKO 202A</div><div class="class-instructor">EGAMOODY</div></div></td><!-- R/KOP202A -->
+    <td class="cell col-thursday"><div class="class-card anim2" data-crn="31036" data-instructor="JAKES"><div class="class-number">ART 294</div><div class="class-name">Animation Practicum</div><div class="class-mode">KOA 102</div><div class="class-instructor">JAKES</div></div></td><!-- R/KOA102 -->
+    <td class="cell col-thursday"><div class="class-card nofill" data-crn="31581" data-instructor="ATIS"><div class="class-number">ART 107D</div><div class="class-name">Intro to Digital Photo</div><div class="class-mode">KOA 103</div><div class="class-instructor">ATIS</div></div></td><!-- R/KOA103 -->
     <td class="cell col-thu-last"></td><!-- R/KOA204 -->
   </tr>
 
@@ -238,7 +262,7 @@
     <td class="cell"></td><!-- M/KOA102 -->
     <!-- M/KOA103 rowspan continues -->
     <td class="cell col-tue-first"></td><!-- T/ASYNC -->
-    <td class="cell col-tuesday"><div class="class-card iface2" data-crn="31712"><div class="class-number">ART 129</div><div class="class-name">Corporate ID</div><div class="class-mode">KOPIKO 202A / ZOOM IN ROOM</div><div class="class-instructor">EGAMOODY</div></div></td><!-- T/KOP202A -->
+    <td class="cell col-tuesday"><div class="class-card iface2" data-crn="31712" data-instructor="EGAMOODY"><div class="class-number">ART 129</div><div class="class-name">Corporate ID</div><div class="class-mode">KOPIKO 202A / ZOOM IN ROOM</div><div class="class-instructor">EGAMOODY</div></div></td><!-- T/KOP202A -->
     <td class="cell col-tuesday"></td><!-- T/KOA103 -->
     <td class="cell col-tue-last"></td><!-- T/KOA204 -->
     <td class="cell"></td><!-- W/SYNC -->
@@ -246,7 +270,7 @@
     <td class="cell"></td><!-- W/KOP202A -->
     <td class="cell"></td><!-- W/KOA102 -->
     <!-- W/KOA103 rowspan continues -->
-    <td class="cell col-thu-first"><div class="class-card iface2" data-crn="31712"><div class="class-number">ART 129</div><div class="class-name">Corporate ID</div><div class="class-mode">KOPIKO 202A / ZOOM IN ROOM</div><div class="class-instructor">EGAMOODY</div></div></td><!-- R/KOP202A -->
+    <td class="cell col-thu-first"><div class="class-card iface2" data-crn="31712" data-instructor="EGAMOODY"><div class="class-number">ART 129</div><div class="class-name">Corporate ID</div><div class="class-mode">KOPIKO 202A / ZOOM IN ROOM</div><div class="class-instructor">EGAMOODY</div></div></td><!-- R/KOP202A -->
     <td class="cell col-thursday"></td><!-- R/KOA102 -->
     <td class="cell col-thursday"></td><!-- R/KOA103 -->
     <td class="cell col-thu-last"></td><!-- R/KOA204 -->
@@ -257,11 +281,11 @@
   <tr class="async-row">
     <td class="timeslot">ASYNC / TBA</td>
     <!-- ART 112 MARCIEMO: cols 2–6, colspan 5 (Mon) -->
-    <td class="cell" colspan="5"><div class="class-card nofill" data-crns="31021,31022,31023"><div class="class-number">ART 112</div><div class="class-name">Intro to Digital Arts</div><div class="class-mode">ASYNC ONLINE — NO SET MEETING DAYS</div><div class="class-instructor">MARCIEMO <span class="section-badge">×3</span></div></div></td>
+    <td class="cell" colspan="5"><div class="class-card nofill" data-crns="31021,31022,31023" data-instructor="MARCIEMO"><div class="class-number">ART 112</div><div class="class-name">Intro to Digital Arts</div><div class="class-mode">ASYNC ONLINE — NO SET MEETING DAYS</div><div class="class-instructor">MARCIEMO <span class="section-badge">×3</span></div></div></td>
     <!-- ART 112 KCIUREJ: cols 7–10, colspan 4 (Tue) -->
-    <td class="cell" colspan="4"><div class="class-card nofill" data-crn="31710"><div class="class-number">ART 112</div><div class="class-name">Intro to Digital Arts</div><div class="class-mode">ASYNC ONLINE — NO SET MEETING DAYS</div><div class="class-instructor">KCIUREJ</div></div></td>
+    <td class="cell" colspan="4"><div class="class-card nofill" data-crn="31710" data-instructor="KCIUREJ"><div class="class-number">ART 112</div><div class="class-name">Intro to Digital Arts</div><div class="class-mode">ASYNC ONLINE — NO SET MEETING DAYS</div><div class="class-instructor">KCIUREJ</div></div></td>
     <!-- ART 156 JAKES: cols 11–15, colspan 5 (Wed) -->
-    <td class="cell" colspan="5"><div class="class-card anim1" data-crn="31028"><div class="class-number">ART 156</div><div class="class-name">Digital Painting</div><div class="class-mode">ASYNC ONLINE — NO SET MEETING DAYS</div><div class="class-instructor">JAKES</div></div></td>
+    <td class="cell" colspan="5"><div class="class-card anim1" data-crn="31028" data-instructor="JAKES"><div class="class-number">ART 156</div><div class="class-name">Digital Painting</div><div class="class-mode">ASYNC ONLINE — NO SET MEETING DAYS</div><div class="class-instructor">JAKES</div></div></td>
     <!-- Empty: cols 16–20, colspan 5 (Thu + Fri) -->
     <td class="cell" colspan="5"></td>
   </tr>
@@ -371,6 +395,57 @@ document.querySelectorAll('.openlab-card').forEach(card => {
     document.getElementById('notes-course').textContent = 'OPEN LAB — ' + day.toUpperCase() + ' (KOA 102/103)';
     document.getElementById('notes-text').innerHTML = OPENLAB_NOTE.replace(/\n/g, '<br>');
     document.getElementById('notes-panel').style.display = 'block';
+  });
+});
+
+// Hovering a class highlights its sibling card(s) on the other meeting day.
+document.querySelectorAll('.class-card').forEach(card => {
+  const key = card.dataset.crns || card.dataset.crn;
+  if (!key) return;
+  card.addEventListener('mouseenter', () => {
+    document.querySelectorAll('.class-card').forEach(c => {
+      if ((c.dataset.crns || c.dataset.crn) === key) c.classList.add('crn-glow');
+    });
+  });
+  card.addEventListener('mouseleave', () => {
+    document.querySelectorAll('.crn-glow').forEach(c => c.classList.remove('crn-glow'));
+  });
+});
+
+// Spotlight filters: click a legend category OR an instructor name to dim
+// everything else; click again to clear. The two filters are mutually exclusive.
+let activeFilter = null;
+let activeInstructor = null;
+function applyFilter() {
+  const any = activeFilter || activeInstructor;
+  document.querySelectorAll('.class-card').forEach(c => {
+    let match = true;
+    if (activeFilter) match = c.classList.contains(activeFilter);
+    if (activeInstructor) match = (c.dataset.instructor === activeInstructor);
+    c.classList.toggle('card-dim', !!any && !match);
+  });
+  document.querySelectorAll('.openlab-card').forEach(c => {
+    c.classList.toggle('card-dim', !!any && activeFilter !== 'openlab');
+  });
+  document.querySelectorAll('#legend .legend-item').forEach(li => {
+    li.classList.toggle('active', li.dataset.filter === activeFilter);
+  });
+  document.querySelectorAll('.instr-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.instructor === activeInstructor);
+  });
+}
+document.querySelectorAll('#legend .legend-item').forEach(li => {
+  li.addEventListener('click', () => {
+    activeFilter = (activeFilter === li.dataset.filter) ? null : li.dataset.filter;
+    activeInstructor = null;
+    applyFilter();
+  });
+});
+document.querySelectorAll('.instr-item').forEach(el => {
+  el.addEventListener('click', () => {
+    activeInstructor = (activeInstructor === el.dataset.instructor) ? null : el.dataset.instructor;
+    activeFilter = null;
+    applyFilter();
   });
 });
 </script>
