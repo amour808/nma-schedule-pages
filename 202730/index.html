@@ -428,6 +428,9 @@ document.querySelectorAll('.class-card').forEach(card => {
 let activeFilter = null;
 let activeInstructor = null;
 function applyFilter() {
+  // A new spotlight (legend category or instructor name) closes the notes panel,
+  // so a previously clicked class's notes can't be mistaken for the new selection.
+  document.getElementById('notes-panel').style.display = 'none';
   const any = activeFilter || activeInstructor;
   document.querySelectorAll('.class-card').forEach(c => {
     let match = true;
